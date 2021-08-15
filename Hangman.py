@@ -7,30 +7,31 @@ from tkinter import messagebox
 ListaImagenes = []
 IndexImg = 0
 
-# Se encarga de hacer un reinicio al programa
 def Re_Iniciar():
+# Se encarga de hacer un reinicio al programa
  global IndexImg, PalabraElegida
  PalabraElegida = Funciones.Palabra_Seleccionada()
  Funciones.Palabra_En_Guiones(Palabra, PalabraElegida)
  IndexImg = -1
  Eliminar_Parte_Del_Cuerpo()
 
+def Comunicadora(PalabraElegida, Palabra, entrada):
 # Esta funcion es una funcion intermedia entre el boton y las acciones que se deben realizar al presionar el
 # boton verificar 
-def Comunicadora(PalabraElegida, Palabra, entrada):
     if Funciones.Verificar_Letra(PalabraElegida, Palabra, entrada) == False:
         Eliminar_Parte_Del_Cuerpo()
     elif "-" not in Palabra.get():
         Terminar("True")
     Entrada.delete(0, END)
 
-# Esta funcion va cambiando de imagen siempre y cuando el input del usuario no se encuentre dentro de la palabra a adivinar
 def Eliminar_Parte_Del_Cuerpo():
+# Esta funcion va cambiando de imagen siempre y cuando el input del usuario no se encuentre dentro de la palabra a adivinar
     global IndexImg
     IndexImg += 1
     Imagen.configure(image = ListaImagenes[IndexImg])
     if IndexImg == len(ListaImagenes) - 1:
         Terminar(False)
+
 
 def Terminar(Ganado: bool):
     if not Ganado:
@@ -45,7 +46,7 @@ root.title("Hangman Game")
 root.geometry("500x550")
 root.configure(background = "white")
 root.resizable(False, False)
-root.iconbitmap(".icon\\HangmanImg.ico")
+
 
 img1 = PhotoImage(file = BancoPalabra.RutasImagenes[0])
 img2 = PhotoImage(file = BancoPalabra.RutasImagenes[1])
